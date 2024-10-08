@@ -25,9 +25,9 @@ Route::get('jadwal', function(){
     $matches = $match->map(function ($match) {
         return [
             Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->image,
+            $match->homeTeam->image ?? $match->homeTeam->name,
             'vs',
-            $match->awayTeam->image,
+            $match->awayTeam->image ?? $match->awayTeam->name,
             $match->result . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
@@ -35,9 +35,9 @@ Route::get('jadwal', function(){
     $matchesToday = $matchToday->map(function ($match) {
         return [
             Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->image,
+            $match->homeTeam->image ?? $match->homeTeam->name,
             'vs',
-            $match->awayTeam->image,
+            $match->awayTeam->image ?? $match->awayTeam->name,
             $match->result . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
