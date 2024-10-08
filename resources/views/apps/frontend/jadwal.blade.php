@@ -14,26 +14,48 @@
   </div><!-- End Page Title -->
 
   <!-- Team Section -->
-  <section id="team" class="team section">
+  <section id="featured-services" class="featured-services section">
+
     <div class="container">
-        <div class="row gy-5">
-            {{-- @foreach ($teams as $team)
-                <div class="col-lg-3 col-md-5 member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-img text-center">
-                        <img width="200" height="50" src="https://marineinsurer.co.uk/wp-content/uploads/2020/05/logo-dummy.png " class="img-fluid" alt="">
-                        <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>{{ $team->name }}</h4>
-                    </div>
-                </div><!-- End Team Member -->
-            @endforeach --}}
-        </div>
+
+      <div class="row gy-3 justify-content-center">
+
+        <div id="match-schedule-table"></div>
+
     </div>
-  </section><!-- /Team Section -->
+
+  </section><!-- /Featured Services Section -->
 @endsection
+@push('js')
+<link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+<script>
+    new gridjs.Grid({
+      columns: [
+        'Match Date',
+        'Home',
+        'vs',
+        'Home',
+        'Result'
+      ],
+      data: @json($matches),
+      pagination: {
+        limit: 5 // Mengatur pagination dengan 5 data per halaman
+      },
+      search: true,  // Menambahkan fitur pencarian
+      sort: true,    // Menambahkan fitur sort untuk sorting kolom
+      language: {
+        search: {
+          placeholder: 'Cari pertandingan...'
+        },
+        pagination: {
+          previous: 'Sebelumnya',
+          next: 'Selanjutnya',
+          showing: 'Menampilkan',
+          results: () => 'hasil'
+        }
+      },
+    }).render(document.getElementById('match-schedule-table'));
+  </script>
+
+@endpush

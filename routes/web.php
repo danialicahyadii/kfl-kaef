@@ -3,8 +3,10 @@
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
+use App\Models\Matches;
 use App\Models\Teams;
-use Illuminate\Foundation\Application;
+use Carbon\Carbon;
+// use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,7 +20,18 @@ Route::get('tim', function(){
 });
 
 Route::get('jadwal', function(){
-    return view('apps.frontend.jadwal');
+    $today = Carbon::now()->format('Y-m-d');
+    $match = Matches::where('match_date', $today)->get();
+    $matches = $match->map(function ($match) {
+        return [
+            Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
+            $match->homeTeam->name,
+            'vs',
+            $match->awayTeam->name,
+            $match->result . ' - ' . $match->result  // Hasil pertandingan
+        ];
+    })->toArray();
+    return view('apps.frontend.jadwal', compact('matches'));
 });
 
 Route::get('berita', function(){

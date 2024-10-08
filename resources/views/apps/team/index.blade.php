@@ -42,8 +42,9 @@
                         <th>
                             No
                         </th>
+                        <th>Action</th>
                         <th>Name</th>
-                        <th>Coach</th>
+                        <th>Image</th>
                         <th data-type="date" data-format="YYYY/DD/MM">Created At</th>
                         </tr>
                     </thead>
@@ -51,8 +52,9 @@
                         @foreach ($team as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td><button type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"><i class="bi bi-pencil"></i></button></td>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->coach ?? '-' }}</td>
+                                <td>{{ $row->image ?? '-' }}</td>
                                 <td>{{ $row->created_at }}</td>
                             </tr>
                         @endforeach
