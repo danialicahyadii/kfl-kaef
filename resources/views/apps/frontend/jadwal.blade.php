@@ -47,9 +47,15 @@
     new gridjs.Grid({
       columns: [
         'Match Date',
-        'Home',
+        {
+          name: 'Home',
+          formatter: (cell) => gridjs.html(`<img src="${cell}" alt="${cell}" width="50" height="50">`)
+        },
         'vs',
-        'Home',
+        {
+          name: 'Away',
+          formatter: (cell) => gridjs.html(`<img src="${cell}" alt="${cell}" width="50" height="50">`)
+        },
         'Result'
       ],
       data: @json($matches),
@@ -75,9 +81,15 @@
     new gridjs.Grid({
       columns: [
         'Match Date',
-        'Home',
+        {
+          name: 'Home',
+          formatter: (cell) => gridjs.html(`<img src="${cell}" alt="${cell}" width="50" height="50">`)
+        },
         'vs',
-        'Home',
+        {
+          name: 'Away',
+          formatter: (cell) => gridjs.html(`<img src="${cell}" alt="${cell}" width="50" height="50">`)
+        },
         'Result'
       ],
       data: @json($matchesToday),

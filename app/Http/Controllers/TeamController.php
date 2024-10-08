@@ -81,4 +81,14 @@ class TeamController extends Controller
     {
         //
     }
+
+    public function tentang()
+    {
+        return view('apps.tentang.index');
+    }
+
+    public function tentangStore(Request $request)
+    {
+
+    }
 }

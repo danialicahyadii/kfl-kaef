@@ -25,9 +25,9 @@ Route::get('jadwal', function(){
     $matches = $match->map(function ($match) {
         return [
             Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->name,
+            $match->homeTeam->image,
             'vs',
-            $match->awayTeam->name,
+            $match->awayTeam->image,
             $match->result . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
@@ -35,12 +35,13 @@ Route::get('jadwal', function(){
     $matchesToday = $matchToday->map(function ($match) {
         return [
             Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->name,
+            $match->homeTeam->image,
             'vs',
-            $match->awayTeam->name,
+            $match->awayTeam->image,
             $match->result . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
+    // dd($matchesToday);
     return view('apps.frontend.jadwal', compact('matches', 'matchesToday'));
 });
 
@@ -60,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::get('standing',  function(){
         return view('apps.standing');
     })->name('standing');
+    Route::get('tentang', [TeamController::class, 'tentang']);
+    Route::post('tentang', [TeamController::class, 'tentang']);
     Route::resource('team', TeamController::class);
     Route::resource('match', MatchController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

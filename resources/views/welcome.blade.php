@@ -53,7 +53,7 @@
                 <li><a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a></li>
                 <li><a href="tim" class="{{ Request::is('tim') ? 'active' : '' }}">Tim</a></li>
                 <li><a href="jadwal" class="{{ Request::is('jadwal') ? 'active' : '' }}">Jadwal</a></li>
-                <li><a href="berita" class="{{ Request::is('berita') ? 'active' : '' }}">Berita</a></li>
+                {{-- <li><a href="berita" class="{{ Request::is('berita') ? 'active' : '' }}">Berita</a></li> --}}
                 <li><a href="tentang-kami" class="{{ Request::is('tentang-kami') ? 'active' : '' }}">Tentang Kami</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

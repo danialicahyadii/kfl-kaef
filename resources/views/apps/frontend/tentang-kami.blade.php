@@ -2,36 +2,39 @@
 @section('content')
 <div class="page-title dark-background">
     <div class="container position-relative">
-      <h1>Tentang</h1>
-      <p>Tentang gelaran turnamen KFL</p>
+      <h1>About</h1>
       <nav class="breadcrumbs">
         <ol>
-          <li><a href="/">Home</a></li>
-          <li class="current">Tentang Kami</li>
+          <li><a href="index.html">Home</a></li>
+          <li class="current">About</li>
         </ol>
       </nav>
     </div>
-  </div><!-- End Page Title -->
+</div><!-- End Page Title -->
 
-  <!-- Team Section -->
-  <section id="team" class="team section">
+  <!-- About Section -->
+  <section id="about" class="about section">
+
     <div class="container">
-        <div class="row gy-5">
-                <div class="col-lg-3 col-md-5 member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-img text-center">
-                        <img width="200" height="50" src="https://marineinsurer.co.uk/wp-content/uploads/2020/05/logo-dummy.png " class="img-fluid" alt="">
-                        <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>tes</h4>
-                    </div>
-                </div><!-- End Team Member -->
+
+        <div class="row d-flex align-items-center gy-4" style="height: 50vh;">
+            <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                <img width="50%" src="{{ asset('assets/img/logo_kfl.png') }}" class="img-fluid" alt="Logo KFL">
+            </div>
+            <div class="col-lg-6 content d-flex justify-content-center flex-column" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-center">Mobile Legends: Bang Bang KFL.</h3>
+                <p class="fst-italic">
+                    adalah kompetisi permainan mobile terbesar dan paling bergengsi di Kimia Farma Grup.
+                    Didorong oleh tekad untuk mengangkat ekosistem esports interlan KF Grup, di tahun 2024 ini KFL melakukan lompatan dengan membangun platform untuk memfasilitasi setiap acara KFL.
+                </p>
+                <p>
+                    Kami percaya bahwa setiap pemain memiliki potensi untuk bersinar. Kami didirikan untuk memberikan platform bagi para gamer untuk menunjukkan keterampilan mereka, bersaing dengan yang terbaik, dan membangun koneksi dengan sesama karyawan KF Grup. Kami berkomitmen untuk meningkatkan pengalaman esports di KF Grup.
+                </p>
+            </div>
         </div>
+
+
     </div>
-  </section><!-- /Team Section -->
+
+  </section><!-- /About Section -->
 @endsection
