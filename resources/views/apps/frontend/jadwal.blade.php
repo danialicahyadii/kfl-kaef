@@ -19,9 +19,23 @@
     <div class="container">
 
       <div class="row gy-3 justify-content-center">
-
-        <div id="match-schedule-table"></div>
-
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All Match</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Today</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div id="match-schedule-table"></div>
+            </div>
+            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div id="match-schedule-table-today"></div>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+          </div>
     </div>
 
   </section><!-- /Featured Services Section -->
@@ -56,6 +70,34 @@
         }
       },
     }).render(document.getElementById('match-schedule-table'));
-  </script>
+</script>
+<script>
+    new gridjs.Grid({
+      columns: [
+        'Match Date',
+        'Home',
+        'vs',
+        'Home',
+        'Result'
+      ],
+      data: @json($matchesToday),
+      pagination: {
+        limit: 5 // Mengatur pagination dengan 5 data per halaman
+      },
+      search: true,  // Menambahkan fitur pencarian
+      sort: true,    // Menambahkan fitur sort untuk sorting kolom
+      language: {
+        search: {
+          placeholder: 'Cari pertandingan...'
+        },
+        pagination: {
+          previous: 'Sebelumnya',
+          next: 'Selanjutnya',
+          showing: 'Menampilkan',
+          results: () => 'hasil'
+        }
+      },
+    }).render(document.getElementById('match-schedule-table-today'));
+</script>
 
 @endpush

@@ -79,6 +79,24 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.0/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.show-link').on('click', function(e){
+                var src = $(this).attr('src');
+                console.log(src);
+                Swal.fire({
+                    title: false,
+                    text: false,
+                    imageUrl: src,
+                    imageWidth: false,
+                    imageHeight: false,
+                    showConfirmButton: false,
+                    });
+            })
+        });
+    </script>
 
 </body>
 

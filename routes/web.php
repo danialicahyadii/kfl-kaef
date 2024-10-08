@@ -21,7 +21,7 @@ Route::get('tim', function(){
 
 Route::get('jadwal', function(){
     $today = Carbon::now()->format('Y-m-d');
-    $match = Matches::where('match_date', $today)->get();
+    $match = Matches::all();
     $matches = $match->map(function ($match) {
         return [
             Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
@@ -31,7 +31,17 @@ Route::get('jadwal', function(){
             $match->result . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
-    return view('apps.frontend.jadwal', compact('matches'));
+    $matchToday = Matches::where('match_date', $today)->get();
+    $matchesToday = $matchToday->map(function ($match) {
+        return [
+            Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
+            $match->homeTeam->name,
+            'vs',
+            $match->awayTeam->name,
+            $match->result . ' - ' . $match->result  // Hasil pertandingan
+        ];
+    })->toArray();
+    return view('apps.frontend.jadwal', compact('matches', 'matchesToday'));
 });
 
 Route::get('berita', function(){

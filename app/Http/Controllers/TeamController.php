@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\TeamsImport;
 use App\Models\Teams;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TeamController extends Controller
@@ -56,7 +57,21 @@ class TeamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $team = Teams::find($id);
+        if(request()->file('logo')){
+            if ($team->image) {
+                $folderPath = 'logo/' . $team->name;
+                Storage::disk('public')->deleteDirectory($folderPath);
+            }
+            $name = $request->logo->getClientOriginalName();
+            $image = $request->logo->storeAs('logo/'.$team->name, $name, 'public');
+            $imageUrl = asset('storage/' . $image);
+        }
+        $team->update([
+            'name' => $request->name,
+            'image' => $imageUrl,
+        ]);
+        return back();
     }
 
     /**

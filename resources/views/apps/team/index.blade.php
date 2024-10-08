@@ -52,9 +52,45 @@
                         @foreach ($team as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td><button type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"><i class="bi bi-pencil"></i></button></td>
+                                <td><button type="button" data-bs-toggle="modal" data-bs-target="#basicModal{{ $row->id }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
+                                    <div class="modal fade" id="basicModal{{ $row->id }}" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="{{ route('team.update', $row->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Update</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row mb-3">
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-12">
+                                                                <label for="inputNanme4" class="form-label">Nama Tim</label>
+                                                                <input type="text" class="form-control" name="name" value="{{ $row->name }}" id="inputNanme4">
+                                                            </div>
+                                                            <div class="col-12 mt-2">
+                                                                <label for="inputNanme4" class="form-label">Logo Tim</label>
+                                                                <input type="file" class="form-control" name="logo" id="inputNanme4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div><!-- End Basic Modal--></td>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->image ?? '-' }}</td>
+                                <td>@if ($row->image)
+                                    <img class="mr-3 rounded show-link" style="cursor: pointer;" width="100" height="50" src="{{ $row->image }}" alt="">
+                                    @else
+                                    -
+                                @endif</td>
                                 <td>{{ $row->created_at }}</td>
                             </tr>
                         @endforeach

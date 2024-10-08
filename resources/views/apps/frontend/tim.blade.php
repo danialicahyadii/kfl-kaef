@@ -20,12 +20,9 @@
             @foreach ($teams as $team)
                 <div class="col-lg-3 col-md-5 member" data-aos="fade-up" data-aos-delay="{{ $team->delay }}">
                     <div class="member-img text-center">
-                        <img src="https://marineinsurer.co.uk/wp-content/uploads/2020/05/logo-dummy.png " class="img-fluid" alt="">
+                        <img src="{{ $team->image ?? 'https://marineinsurer.co.uk/wp-content/uploads/2020/05/logo-dummy.png' }}" class="img-fluid" alt="">
                         <div class="social">
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-info"></i></a>
                         </div>
                     </div>
                     <div class="member-info text-center">
