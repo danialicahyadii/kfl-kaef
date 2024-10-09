@@ -11,17 +11,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    $teams = Teams::with('teamPoints')->get()->sortByDesc('teamPoints.match_points');
-    $standings = $teams->map(function ($team) {
-        return [
-            $team->image,
-            $team->teamPoints->match_points ?? 0,
-            ($team->teamPoints->match_wins ?? 0) . '-' . ($team->teamPoints->match_losses ?? 0),
-            ($team->teamPoints->match_wins ?? 0) - ($team->teamPoints->match_losses ?? 0),
-            ($team->teamPoints->game_wins ?? 0) . '-' . ($team->teamPoints->game_losses ?? 0),
-        ];
-    })->toArray();
-    return view('apps.frontend.home', compact('standings', 'teams'));
+    $teams = Teams::with('teamPoints')->get()->sortByDesc(function ($team) {
+        $points = $team->teamPoints ? $team->teamPoints->match_points : 0;
+        return $points < 0 ? -PHP_INT_MAX : $points;
+    });
+    return view('apps.frontend.home', compact('teams'));
 });
 
 Route::get('tim', function(){
