@@ -7,6 +7,7 @@
   <title>ESPORT KFL</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  <meta property="og:image" content="{{ asset('assets/img/logo_kfl.png') }}" />
 
   <!-- Favicons -->
   <link href="assets/img/logo_kfl.png" rel="icon">
