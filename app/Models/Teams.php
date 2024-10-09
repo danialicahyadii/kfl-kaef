@@ -13,7 +13,7 @@ class Teams extends Model
 
     public function teamPoints()
     {
-        return $this->hasOne(Points::class, 'team_id');
+        return $this->hasOne(Points::class, 'team_id')->orderBy('match_points');;
     }
 
 

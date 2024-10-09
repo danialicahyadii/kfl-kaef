@@ -83,13 +83,13 @@
                                     </td>
                                     <td style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
                                         <div>
-                                            {{ $team->teamPoints->match_wins ?? 0 }} -
+                                            {{ $team->teamPoints->game_wins ?? 0 }} -
                                             {{ $team->teamPoints->match_losses ?? 0 }}
                                         </div>
                                     </td>
                                     <td style="color: #fe0000; font-weight: 600; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
                                         <div>
-                                            {{ ($team->teamPoints->match_wins ?? 0) - ($team->teamPoints->match_losses ?? 0) }}
+                                            {{ ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0) }}
                                         </div>
                                     </td>
                                     <td style="min-width: 50px; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">

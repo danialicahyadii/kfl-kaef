@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    $teams = Teams::with('teamPoints')->get();
+    $teams = Teams::with('teamPoints')->get()->sortByDesc('teamPoints.match_points');
     $standings = $teams->map(function ($team) {
         return [
             $team->image,
@@ -48,7 +48,7 @@ Route::get('jadwal', function(){
             $match->homeTeam->image ?? $match->homeTeam->name,
             'vs',
             $match->awayTeam->image ?? $match->awayTeam->name,
-            $match->home_team_score . ' - ' . $match->away_team_score  // Hasil pertandingan
+            $match->home_team_score . ' - ' . $match->result  // Hasil pertandingan
         ];
     })->toArray();
     // dd($matchesToday);
