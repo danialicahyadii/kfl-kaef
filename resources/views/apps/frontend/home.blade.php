@@ -39,9 +39,9 @@
                         <thead>
                             <tr role="row">
                                 <th style="background-color: black" class="team-header sorting_disabled text-white" rowspan="1" colspan="1" style="width: 479.57px;"> Team </th>
-                                <th style="background-color: black" style="color: #FFCBCB; width: 205.32px;" class="sorting_disabled text-center" rowspan="1" colspan="1"> Match Point </th>
+                                <th style="background-color: black" style="color: #fe0000; width: 205.32px;" class="sorting_disabled text-center" rowspan="1" colspan="1"> Match Point </th>
                                 <th style="background-color: black" class="sorting_disabled text-center text-white" rowspan="1" colspan="1" style="width: 173.969px;"> Match W-L </th>
-                                <th style="background-color: black" style="color: #FFCBCB; width: 222.367px;" class="sorting_disabled text-center" rowspan="1" colspan="1"> Net Game Win </th>
+                                <th style="background-color: black" style="color: #fe0000; width: 222.367px;" class="sorting_disabled text-center" rowspan="1" colspan="1"> Net Game Win </th>
                                 <th style="background-color: black" style="min-width: 50px; width: 153.773px;" class="sorting_disabled text-center text-white" rowspan="1" colspan="1"> Game W-L </th></tr>
                         </thead>
 
