@@ -13,7 +13,11 @@ use Inertia\Inertia;
 Route::get('/', function () {
     $teams = Teams::with('teamPoints')->get()->sortByDesc(function ($team) {
         $points = $team->teamPoints ? $team->teamPoints->match_points : 0;
-        return $points < 0 ? -PHP_INT_MAX : $points;
+        if ($points < 0) {
+            return -PHP_INT_MAX;
+        }
+        $game = ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0);
+        return [$points, $team->teamPoints ? $game : 0];
     });
     return view('apps.frontend.home', compact('teams'));
 });
