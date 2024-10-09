@@ -152,7 +152,7 @@
                                 <td>{{ $row->homeTeam->name }}</td>
                                 <td>{{ $row->awayTeam->name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($row->match_date)->format('d-m-Y') }}</td>
-                                <td>{{ $row->result }}</td>
+                                <td>{{ $row->home_team_score }} - {{ $row->away_team_score }}</td>
                             </tr>
                         @endforeach
                     </tbody>

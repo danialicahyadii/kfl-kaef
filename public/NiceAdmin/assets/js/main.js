@@ -284,7 +284,8 @@
   const datatables = select('.datatable', true)
   datatables.forEach(datatable => {
     new simpleDatatables.DataTable(datatable, {
-      perPageSelect: [5, 10, 15, ["All", -1]],
+      perPage: -1,
+      perPageSelect: [["All", -1],5, 10, 15],
       columns: [
         {
           select: 2,
