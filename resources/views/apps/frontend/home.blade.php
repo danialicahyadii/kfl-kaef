@@ -83,7 +83,7 @@
                                     </td>
                                     <td style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
                                         <div>
-                                            {{ $team->teamPoints->game_wins ?? 0 }} -
+                                            {{ $team->teamPoints->match_wins ?? 0 }} -
                                             {{ $team->teamPoints->match_losses ?? 0 }}
                                         </div>
                                     </td>
