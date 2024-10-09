@@ -17,7 +17,7 @@ class TeamsImport implements ToModel, WithHeadingRow
     {
         return new Teams([
             'name' => $row['name'],
-            'coach' => $row['coach']
+            'image' => $row['image']
         ]);
     }
 }
