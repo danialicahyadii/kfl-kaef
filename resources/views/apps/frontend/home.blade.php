@@ -53,7 +53,7 @@
                             @foreach ($teams as $team)
                                 @php
                                     // Determine if this is one of the last three teams
-                                    $isLastThree = ($loop->iteration > $totalTeams - 3);
+                                    $isLastThree = ($loop->iteration > $totalTeams - 4);
                                 @endphp
 
                                 <tr class="odd" >
