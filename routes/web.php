@@ -11,7 +11,17 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return view('apps.frontend.home');
+    $teams = Teams::with('teamPoints')->get();
+    $standings = $teams->map(function ($team) {
+        return [
+            $team->image,
+            $team->teamPoints->match_points ?? 0,
+            ($team->teamPoints->match_wins ?? 0) . '-' . ($team->teamPoints->match_losses ?? 0),
+            ($team->teamPoints->match_wins ?? 0) - ($team->teamPoints->match_losses ?? 0),
+            ($team->teamPoints->game_wins ?? 0) . '-' . ($team->teamPoints->game_losses ?? 0),
+        ];
+    })->toArray();
+    return view('apps.frontend.home', compact('standings', 'teams'));
 });
 
 Route::get('tim', function(){
@@ -53,13 +63,14 @@ Route::get('tentang-kami', function(){
     return view('apps.frontend.tentang-kami');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('standing',  function(){
-        return view('apps.standing');
+        $teams = Teams::get();
+        return view('apps.standing', compact('teams'));
     })->name('standing');
     Route::get('tentang', [TeamController::class, 'tentang']);
     Route::post('tentang', [TeamController::class, 'tentang']);

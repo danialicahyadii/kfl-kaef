@@ -71,27 +71,64 @@ class MatchController extends Controller
     {
         $match = Matches::find($id);
 
-        $homeTeamResult = $request->input('home_team_result');
-        $awayTeamResult = $request->input('away_team_result');
+        // Input skor tim home dan away
+        $homeTeamScore = (int) $request->input('home_team_score'); // Skor tim home
+        $awayTeamScore = (int) $request->input('away_team_score'); // Skor tim away
 
         $homeTeam = $match->homeTeam;
         $awayTeam = $match->awayTeam;
 
-        if ($homeTeamResult == 'win' && $awayTeamResult == 'lose') {
-            $homeTeam->teamPoints->increment('points', 1);
-            $homeTeam->teamPoints->increment('wins');
-            $awayTeam->teamPoints->increment('losses');
-        } elseif ($homeTeamResult == 'lose' && $awayTeamResult == 'win') {
-            $awayTeam->teamPoints->increment('points', 1);
-            $awayTeam->teamPoints->increment('wins');
-            $homeTeam->teamPoints->increment('losses');
-        }
+        $homeTeam->teamPoints()->firstOrCreate(
+            ['team_id' => $homeTeam->id],
+        );
 
-        $homeTeam->teamPoints->increment('matches_played');
-        $awayTeam->teamPoints->increment('matches_played');
-        // dd($match, $homeTeamResult, $homeTeam);
+        $awayTeam->teamPoints()->firstOrCreate(
+            ['team_id' => $awayTeam->id],
+        );
+
+        // Jika skor tim home lebih besar dari away, tim home menang
+        if ($homeTeamScore > $awayTeamScore) {
+            // Home team menang
+            $homeTeam->teamPoints->increment('match_points', 1); // Tambah match point
+            $homeTeam->teamPoints->increment('match_wins'); // Tambah match win
+            $homeTeam->teamPoints->increment('game_wins', $homeTeamScore); // Tambah game wins
+            $homeTeam->teamPoints->increment('game_losses', $awayTeamScore); // Tambah game losses
+
+            // Away team kalah
+            $awayTeam->teamPoints->increment('match_losses'); // Tambah match loss
+            $awayTeam->teamPoints->increment('game_wins', $awayTeamScore); // Tambah game wins
+            $awayTeam->teamPoints->increment('game_losses', $homeTeamScore); // Tambah game losses
+
+        } elseif ($awayTeamScore > $homeTeamScore) {
+            // Away team menang
+            $awayTeam->teamPoints->increment('match_points', 1); // Tambah match point
+            $awayTeam->teamPoints->increment('match_wins'); // Tambah match win
+            $awayTeam->teamPoints->increment('game_wins', $awayTeamScore); // Tambah game wins
+            $awayTeam->teamPoints->increment('game_losses', $homeTeamScore); // Tambah game losses
+
+            // Home team kalah
+            $homeTeam->teamPoints->increment('match_losses'); // Tambah match loss
+            $homeTeam->teamPoints->increment('game_wins', $homeTeamScore); // Tambah game wins
+            $homeTeam->teamPoints->increment('game_losses', $awayTeamScore); // Tambah game losses
+        }
+        $match->update([
+            'home_team_score' => $homeTeamScore,
+            'away_team_score' => $awayTeamScore,
+            'is_completed' => true
+        ]);
 
         return back();
+    }
+
+    private function updateWinLoss($currentRecord, $result)
+    {
+        [$wins, $losses] = explode('-', $currentRecord);
+        if ($result === 'win') {
+            $wins++;
+        } else {
+            $losses++;
+        }
+        return "$wins-$losses";
     }
 
     /**

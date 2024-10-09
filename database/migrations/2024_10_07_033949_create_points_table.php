@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('points', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
-            $table->integer('points')->default(0);
-            $table->integer('matches_played')->default(0);
-            $table->integer('wins')->default(0);
-            $table->integer('losses')->default(0);
+            $table->integer('match_points')->default(0);  // Poin pertandingan
+            $table->integer('match_wins')->default(0);    // Total menang pertandingan
+            $table->integer('match_losses')->default(0);  // Total kalah pertandingan
+            $table->integer('game_wins')->default(0);     // Total menang game (dalam pertandingan)
+            $table->integer('game_losses')->default(0);   // Total kalah game (dalam pertandingan)
             $table->timestamps();
         });
     }

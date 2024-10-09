@@ -69,7 +69,7 @@ class TeamController extends Controller
         }
         $team->update([
             'name' => $request->name,
-            'image' => $imageUrl,
+            'image' => $imageUrl ?? $team->image,
         ]);
         return back();
     }

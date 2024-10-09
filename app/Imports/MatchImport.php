@@ -32,7 +32,8 @@ class MatchImport implements ToModel, WithHeadingRow
             'match_date'  => $this->date_convert($row['match_date']),
             'home_team_id' => $row['home_team_id'],
             'away_team_id' => $row['away_team_id'],
-            // 'result' => $row['result'],
+            'home_team_score' => null,
+            'away_team_score' => null,
         ]);
     }
 }

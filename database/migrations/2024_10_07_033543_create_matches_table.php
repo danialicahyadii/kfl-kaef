@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('home_team_id')->constrained('teams')->onDelete('cascade');
             $table->foreignId('away_team_id')->constrained('teams')->onDelete('cascade');
+            $table->integer('home_team_score')->nullable()->default(null); // Skor tim home
+            $table->integer('away_team_score')->nullable()->default(null); // Skor tim away
             $table->timestamp('match_date');
-            $table->string('result')->nullable();   
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

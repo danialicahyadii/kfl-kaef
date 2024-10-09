@@ -10,4 +10,11 @@ class Teams extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function teamPoints()
+    {
+        return $this->hasOne(Points::class, 'team_id');
+    }
+
+
 }

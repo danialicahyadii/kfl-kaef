@@ -106,54 +106,48 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#basicModal{{ $row->id }}" class="btn btn-sm btn-warning"><i class="bi bi-arrow-repeat"></i></button>
-                                    <div class="modal fade" id="basicModal{{ $row->id }}" tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form action="{{ route('match.update', $row->id) }}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Update</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row mb-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="col-md-5">
-                                                                    <label for="" class="mb-2">Home Team: {{ $row->homeTeam->name }}</label>
-                                                                    <select name="home_team_result" class="form-control">
-                                                                        <option value="" disabled selected>Pilih Result</option>
-                                                                        <option value="win">Win</option>
-                                                                        <option value="lose">Lose</option>
-                                                                    </select>
+                                    @if ($row->is_completed == false)
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#basicModal{{ $row->id }}" class="btn btn-sm btn-warning"><i class="bi bi-arrow-repeat"></i></button>
+                                        <div class="modal fade" id="basicModal{{ $row->id }}" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('match.update', $row->id) }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Update Score</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row mb-3">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="col-md-5">
+                                                                        <label for="" class="mb-2">{{ $row->homeTeam->name }}</label>
+                                                                        <input class="form-control" type="number" name="home_team_score" id="home_team_score" value="0" min="0">
+                                                                    </div>
+                                                                    <span class="mx-2">vs</span>
+                                                                    <div class="col-md-5">
+                                                                        <label for="" class="mb-2">{{ $row->awayTeam->name }}</label>
+                                                                        <input class="form-control" type="number" name="away_team_score" id="away_team_score" value="0" min="0">
+                                                                    </div>
                                                                 </div>
-                                                                <span class="mx-2">vs</span> <!-- "mx-2" untuk memberikan jarak horizontal -->
-                                                                <div class="col-md-5">
-                                                                    <label for="" class="mb-2">Away Team: {{ $row->awayTeam->name }}</label>
-                                                                    <select name="away_team_result" class="form-control">
-                                                                        <option value="" disabled selected>Pilih Result</option>
-                                                                        <option value="win">Win</option>
-                                                                        <option value="lose">Lose</option>
-                                                                    </select>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="" class="mb-2">Match Date</label>
+                                                                <div class="col-sm-12">
+                                                                    <input type="text" name="match_date" value="{{ \Carbon\Carbon::parse($row->match_date)->locale('id')->translatedFormat('l, j F Y') }}" class="form-control" disabled>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-3">
-                                                            <label for="" class="mb-2">Result</label>
-                                                            <div class="col-sm-12">
-                                                                <textarea name="result" class="form-control" id="" cols="30" rows="10"></textarea>
-                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Update</button>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Update</button>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div><!-- End Basic Modal-->
+                                        </div><!-- End Basic Modal-->
+                                    @endif
                                 </td>
                                 <td>{{ $row->homeTeam->name }}</td>
                                 <td>{{ $row->awayTeam->name }}</td>
