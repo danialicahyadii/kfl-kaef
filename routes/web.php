@@ -38,7 +38,7 @@ Route::get('jadwal', function(){
             $match->homeTeam->image ?? $match->homeTeam->name,
             'vs',
             $match->awayTeam->image ?? $match->awayTeam->name,
-            $match->result . ' - ' . $match->result  // Hasil pertandingan
+            $match->home_team_score . ' - ' . $match->away_team_score  // Hasil pertandingan
         ];
     })->toArray();
     $matchToday = Matches::where('match_date', $today)->get();
@@ -48,7 +48,7 @@ Route::get('jadwal', function(){
             $match->homeTeam->image ?? $match->homeTeam->name,
             'vs',
             $match->awayTeam->image ?? $match->awayTeam->name,
-            $match->result . ' - ' . $match->result  // Hasil pertandingan
+            $match->home_team_score . ' - ' . $match->away_team_score  // Hasil pertandingan
         ];
     })->toArray();
     // dd($matchesToday);
