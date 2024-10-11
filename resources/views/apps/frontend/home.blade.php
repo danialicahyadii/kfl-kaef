@@ -29,83 +29,73 @@
     <div class="container">
 
       <div class="row gy-4">
-          <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-              <h1>STANDINGS</h1>
-              <div class="mt-5">
-                  {{-- <img width="90%" src="{{ asset('assets/img/klasemen.jpeg') }}" alt=""> --}}
-                  {{-- <div id="standings-table"></div> --}}
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+            <h1>STANDINGS</h1>
+            <div class="mt-5">
                 <div class="col-sm-12">
-                    <table class="table table-sm table-standings dataTable no-footer" id="DataTables_Table_0" role="grid">
-                        <thead>
-                            <tr role="row">
-                                <th style="background-color: black" class="team-header sorting_disabled text-white" rowspan="1" colspan="1" style="width: 479.57px;"> Team </th>
-                                <th style="color: #fe0000; width: 205.32px;background-color: black" class="sorting_disabled text-center" rowspan="1" colspan="1"> Match Point </th>
-                                <th style="background-color: black" class="sorting_disabled text-center text-white" rowspan="1" colspan="1" style="width: 173.969px;"> Match W-L </th>
-                                <th style="color: #fe0000; width: 222.367px; background-color: black" class="sorting_disabled text-center" rowspan="1" colspan="1"> Net Game Win </th>
-                                <th style="background-color: black" style="min-width: 50px; width: 153.773px;" class="sorting_disabled text-center text-white" rowspan="1" colspan="1"> Game W-L </th></tr>
-                        </thead>
-
-                        <tbody>
-                            @php
-                                $totalTeams = count($teams);
-                            @endphp
-
-                            @foreach ($teams as $team)
+                    <div class="table-responsive">
+                        <table class="table table-sm table-standings dataTable no-footer" id="DataTables_Table_0" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th style="background-color: black" class="team-header sorting_disabled text-white" rowspan="1" colspan="1"> Team </th>
+                                    <th style="color: #fe0000; background-color: black" class="sorting_disabled text-center" rowspan="1" colspan="1"> Match Point </th>
+                                    <th style="background-color: black" class="sorting_disabled text-center text-white" rowspan="1" colspan="1"> Match W-L </th>
+                                    <th style="color: #fe0000; background-color: black" class="sorting_disabled text-center" rowspan="1" colspan="1"> Net Game Win </th>
+                                    <th style="background-color: black" class="sorting_disabled text-center text-white" rowspan="1" colspan="1"> Game W-L </th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @php
-                                    // Determine if this is one of the last three teams
-                                    $isLastThree = ($loop->iteration > $totalTeams - 4);
+                                    $totalTeams = count($teams);
                                 @endphp
 
-                                <tr class="odd" >
-                                    <td class="team-info" style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
-                                        <div class="d-flex flex-row align-items-center">
-                                            <div class="team-rank ms-lg-2 me-lg-2">
-                                                {{ $loop->iteration }}
-                                            </div>
-                                            <div class="team-logo me-lg-2">
-                                                <img src="{{ $team->image }}" style="height: 24px;">
-                                            </div>
-                                            <div class="team-name">
-                                                <span class="d-lg-none">
-                                                    {{ strtoupper($team->name) }}
-                                                </span>
-                                                <span class="d-none d-lg-block">
-                                                    {{ strtoupper($team->name) }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </td>
+                                @foreach ($teams as $team)
+                                    @php
+                                        // Determine if this is one of the last three teams
+                                        $isLastThree = ($loop->iteration > $totalTeams - 4);
+                                    @endphp
 
-                                    <td style="color: #fe0000; font-weight: 600; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
-                                        <div>
-                                            {{ $team->teamPoints->match_points ?? 0 }}
-                                        </div>
-                                    </td>
-                                    <td style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
-                                        <div>
-                                            {{ $team->teamPoints->match_wins ?? 0 }} -
-                                            {{ $team->teamPoints->match_losses ?? 0 }}
-                                        </div>
-                                    </td>
-                                    <td style="color: #fe0000; font-weight: 600; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
-                                        <div>
-                                            {{ ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0) }}
-                                        </div>
-                                    </td>
-                                    <td style="min-width: 50px; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
-                                        <div>
-                                            {{ $team->teamPoints->game_wins ?? 0 }} -
-                                            {{ $team->teamPoints->game_losses ?? 0 }}
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    <tr class="odd">
+                                        <td class="team-info" style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="team-rank ms-lg-2 me-lg-2">
+                                                    {{ $loop->iteration }}
+                                                </div>
+                                                <div class="team-logo me-lg-2">
+                                                    <img src="{{ $team->image }}" style="height: 24px;">
+                                                    <span class="d-lg-none">{{ strtoupper($team->name) }}</span>
+
+                                                </div>
+                                                <div class="team-name">
+                                                    {{-- <span class="d-lg-none">{{ strtoupper($team->name) }}</span> --}}
+                                                    {{-- <span class="d-lg-none">GEEK</span> --}}
+                                                    {{-- <span class="d-none d-lg-block">{{ strtoupper($team->name) }}</span> --}}
+                                                    <span class="d-none d-lg-block">{{ strtoupper($team->name) }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td style="color: #fe0000; font-weight: 600; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
+                                            <div>{{ $team->teamPoints->match_points ?? 0 }}</div>
+                                        </td>
+                                        <td style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
+                                            <div>{{ $team->teamPoints->match_wins ?? 0 }} - {{ $team->teamPoints->match_losses ?? 0 }}</div>
+                                        </td>
+                                        <td style="color: #fe0000; font-weight: 600; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
+                                            <div>{{ ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0) }}</div>
+                                        </td>
+                                        <td style="min-width: 50px; {{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
+                                            <div>{{ $team->teamPoints->game_wins ?? 0 }} - {{ $team->teamPoints->game_losses ?? 0 }}</div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-              </div>
-          </div>
         {{-- <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
           <div class="service-item item-cyan position-relative">
             <div class="icon">
@@ -278,4 +268,10 @@
 @endsection
 @push('js')
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        alert('tes')
+        $('#DataTables_Table_0').DataTable();
+    } );
+</script>
 @endpush

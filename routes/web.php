@@ -61,6 +61,13 @@ Route::get('tentang-kami', function(){
     return view('apps.frontend.tentang-kami');
 });
 
+Route::get('berita', function(){
+    return view('apps.frontend.berita');
+});
+Route::get('berita-detail', function(){
+    return view('apps.frontend.berita-detail');
+});
+
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
