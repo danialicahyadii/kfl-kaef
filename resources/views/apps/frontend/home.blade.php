@@ -29,8 +29,8 @@
     <div class="container">
 
       <div class="row gy-4">
-        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-            <h1>STANDINGS</h1>
+        <div data-aos="fade-up" data-aos-delay="100">
+            <h1 class="text-center">STANDINGS</h1>
             <div class="mt-5">
                 <div class="col-sm-12">
                     <div class="table-responsive">
@@ -55,7 +55,7 @@
                                         $isLastThree = ($loop->iteration > $totalTeams - 4);
                                     @endphp
 
-                                    <tr class="odd">
+                                    <tr class="odd text-center">
                                         <td class="team-info" style="{{ $isLastThree ? 'background-color: #FFCBCB;' : '' }}">
                                             <div class="d-flex flex-row align-items-center">
                                                 <div class="team-rank ms-lg-2 me-lg-2">
@@ -92,6 +92,11 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div>
+                    <b>
+                        *Empat posisi terbawah tidak lolos ke babak playoffs
+                    </b>
                 </div>
             </div>
         </div>
@@ -151,30 +156,14 @@
   </section><!-- /Featured Services Section -->
 
   <!-- About Section -->
-  {{-- <section id="about" class="about section light-background">
+  <section id="about" class="about section light-background">
 
     <div class="container">
 
       <div class="row gy-4">
-        <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-          <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
-        </div>
-        <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <ul>
-            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-          </ul>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-          </p>
+        <div class="col-12 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/img/thumbnail.jpeg" class="img-fluid" alt="">
+          <a href="https://www.youtube.com/watch?v=m9BysWCKvx8" class="glightbox pulsating-play-btn"></a>
         </div>
       </div>
 
@@ -182,89 +171,6 @@
 
   </section><!-- /About Section -->
 
-  <!-- Features Section -->
-  <section id="features" class="features section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-      <h2>Features</h2>
-      <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container">
-
-      <div class="row gy-4 align-items-center features-item">
-        <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-          <img src="assets/img/features-1.svg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <ul>
-            <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-            <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-            <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
-          </ul>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item">
-        <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-          <img src="assets/img/features-2.svg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
-          <h3>Corporis temporibus maiores provident</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item">
-        <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
-          <img src="assets/img/features-3.svg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7" data-aos="fade-up">
-          <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
-          <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
-          <ul>
-            <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-            <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-            <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
-          </ul>
-        </div>
-      </div><!-- Features Item -->
-
-      <div class="row gy-4 align-items-center features-item">
-        <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
-          <img src="assets/img/features-4.svg" class="img-fluid" alt="">
-        </div>
-        <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
-          <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
-        </div>
-      </div><!-- Features Item -->
-
-    </div>
-
-  </section><!-- /Features Section --> --}}
 @endsection
 @push('js')
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>

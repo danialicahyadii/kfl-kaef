@@ -39,7 +39,10 @@
 </head>
 
 <body class="index-page">
-
+    {{-- <audio controls autoplay hidden>
+        <source src="{{ asset('assets/music/music.mpeg') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio> --}}
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
