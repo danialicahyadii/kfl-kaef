@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('standing');
+        return redirect('admin');
     }
 
     /**

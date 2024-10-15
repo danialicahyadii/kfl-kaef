@@ -210,7 +210,12 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="/">
+                  <i class="bi bi-arrow-counterclockwise"></i>
+                  <span>Go To Frontend</span>
+                </a>
+              </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bi bi-box-arrow-right"></i>

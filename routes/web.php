@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Models\Matches;
@@ -10,77 +12,28 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    $teams = Teams::with('teamPoints')->get()->sortByDesc(function ($team) {
-        $points = $team->teamPoints ? $team->teamPoints->match_points : 0;
-        if ($points < 0) {
-            return -PHP_INT_MAX;
-        }
-        $game = ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0);
-        return [$points, $team->teamPoints ? $game : 0];
-    });
-    return view('apps.frontend.home', compact('teams'));
+Route::controller(FrontEndController::class)->group(function () {
+    Route::get('', 'home');
+    Route::get('tim', 'tim');
+    Route::get('jadwal', 'jadwal');
+    Route::get('berita', 'berita');
+    Route::get('berita-detail', 'beritaDetail');
+    Route::get('tentang-kami', 'tentangKami');
 });
-
-Route::get('tim', function(){
-    $teams = Teams::get();
-    return view('apps.frontend.tim', compact('teams'));
-});
-
-Route::get('jadwal', function(){
-    $today = Carbon::now()->format('Y-m-d');
-    $match = Matches::all();
-    $matches = $match->map(function ($match) {
-        return [
-            Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->image ?? $match->homeTeam->name,
-            'vs',
-            $match->awayTeam->image ?? $match->awayTeam->name,
-            $match->home_team_score . ' - ' . $match->away_team_score  // Hasil pertandingan
-        ];
-    })->toArray();
-    $matchToday = Matches::where('match_date', $today)->get();
-    $matchesToday = $matchToday->map(function ($match) {
-        return [
-            Carbon::parse($match->match_date)->locale('id')->translatedFormat('l, j F Y'),     // Tanggal pertandingan
-            $match->homeTeam->image ?? $match->homeTeam->name,
-            'vs',
-            $match->awayTeam->image ?? $match->awayTeam->name,
-            $match->home_team_score . ' - ' . $match->result  // Hasil pertandingan
-        ];
-    })->toArray();
-    // dd($matchesToday);
-    return view('apps.frontend.jadwal', compact('matches', 'matchesToday'));
-});
-
-Route::get('berita', function(){
-    return view('apps.frontend.berita');
-});
-
-Route::get('tentang-kami', function(){
-    return view('apps.frontend.tentang-kami');
-});
-
-Route::get('berita', function(){
-    return view('apps.frontend.berita');
-});
-Route::get('berita-detail', function(){
-    return view('apps.frontend.berita-detail');
-});
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('standing',  function(){
-        $teams = Teams::get();
-        return view('apps.standing', compact('teams'));
-    })->name('standing');
-    Route::get('tentang', [TeamController::class, 'tentang']);
-    Route::post('tentang', [TeamController::class, 'tentang']);
-    Route::resource('team', TeamController::class);
-    Route::resource('match', MatchController::class);
+    Route::prefix('admin')->group(function () {
+        Route::get('',  function(){
+            $teams = Teams::get();
+            return view('apps.standing', compact('teams'));
+        })->name('standing');
+        Route::resource('team', TeamController::class);
+        Route::resource('match', MatchController::class);
+        Route::resource('news', NewsController::class);
+        Route::get('tentang-kami', function(){
+            return view('apps.tentang.index');
+        });
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
