@@ -30,6 +30,13 @@
 
       <div class="row gy-4">
         <div data-aos="fade-up" data-aos-delay="100">
+            <h1 class="text-center">PLAYOFFS BRACKET</h1>
+            <div class="mt-5">
+                <div class="col-sm-12 text-center">
+                    <img width="100%" src="{{ asset('assets/img/bracket.jpg') }}" alt="">
+                </div>
+        </div>
+        <div class="mt-5" data-aos="fade-up" data-aos-delay="100">
             <h1 class="text-center">STANDINGS</h1>
             <div class="mt-5">
                 <div class="col-sm-12">
