@@ -9,6 +9,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link {{ Request::is('admin/bracket') ? '' : 'collapsed' }}" href="{{ url('admin/bracket') }}">
+          <i class="bi bi-dice-2-fill"></i>
+          <span>Bracket</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/match') ? '' : 'collapsed' }}" href="{{ url('admin/match') }}">
           <i class="bi bi-collection-play-fill"></i>
           <span>Match</span>

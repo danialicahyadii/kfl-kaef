@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bracket;
 use App\Models\Matches;
 use App\Models\Teams;
 use Carbon\Carbon;
@@ -19,7 +20,8 @@ class FrontEndController extends Controller
             $game = ($team->teamPoints->game_wins ?? 0) - ($team->teamPoints->game_losses ?? 0);
             return [$points, $team->teamPoints ? $game : 0];
         });
-        return view('apps.frontend.home', compact('teams'));
+        $bracket = Bracket::find(1);
+        return view('apps.frontend.home', compact('teams', 'bracket'));
     }
 
     public function tim()
